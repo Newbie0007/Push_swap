@@ -49,17 +49,31 @@ void		sort(t_swap *stack_a, t_swap *stack_b, int length)
 	temp = stack_a;
 	stack_b = NULL;
 	length = length + 2;
-	while (temp->next && temp->data > temp->next->data)
+	while (1)
+	{while (temp->next && temp->data > temp->next->data)
 	{
 		print_stack(&temp);
-		if (i < 1)
+		if (i < 1 && stack_a->next != NULL)
 			sa(&temp);
-		else if (i > 1)
+		if (i > 1)
 			ra(&temp);
-		else if (i > 1)
+		if (i > 1)
 			rra(&temp);
+		if (i > 4 && stack_a->next != NULL)
+			pb(&temp, &stack_b);
+		if (i > 3)
+			sa(&stack_b);
+		if (i > 3 && stack_b->next != NULL)
+			pa(&temp, &stack_b);
+		if (i > 4)
+			rr(&temp, &stack_b);
+		if (i > 4 && stack_b->next != NULL)
+			rrb(&stack_b);
+		if (i > 4)
+			rrr(&temp, &stack_b);
 		i++;
-		temp = temp->next;
+		temp = temp->next;}
+		
 	}
 	print_stack(&stack_a);
 	//check_stack(&stack_a, &stack_b, length);
@@ -84,8 +98,8 @@ void		check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
 	if (i == length)
 		ft_putstr("Stack is sorted!!!\n");
 	else
-		swap_stack(*stack_a, *stack_b);
-		//sort(*stack_a, *stack_b, length);
+		//swap_stack(*stack_a, *stack_b);
+		sort(*stack_a, *stack_b, length);
 }
 
 int			main(int argc, char **av)
