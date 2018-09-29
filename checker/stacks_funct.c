@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/29 17:00:58 by tngwenya          #+#    #+#             */
-/*   Updated: 2018/09/29 17:01:02 by tngwenya         ###   ########.fr       */
+/*   Created: 2018/09/29 16:28:53 by tngwenya          #+#    #+#             */
+/*   Updated: 2018/09/29 16:30:56 by tngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_list.h"
 
 t_swap		*new_link(t_swap *link, int num)
 {
-	t_swap	*temp;
+	t_swap *temp;
 
 	temp = ft_memalloc(sizeof(t_swap));
 	temp->data = num;
@@ -25,8 +25,8 @@ t_swap		*new_link(t_swap *link, int num)
 
 t_swap		*create_stack(t_swap **link, int num)
 {
-	t_swap	*elem;
-	t_swap	*temp;
+	t_swap *elem;
+	t_swap *temp;
 
 	elem = ft_memalloc(sizeof(t_swap));
 	elem->data = num;

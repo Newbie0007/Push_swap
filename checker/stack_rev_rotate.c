@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_list.h"
 
 void	rra(t_swap **stack_a)
 {
@@ -26,7 +26,6 @@ void	rra(t_swap **stack_a)
 	temp->next = *stack_a;
 	*stack_a = temp;
 	temp2->next = NULL;
-	ft_putstr("rra ");
 }
 
 void	rrb(t_swap **stack_b)
@@ -43,7 +42,6 @@ void	rrb(t_swap **stack_b)
 	temp->next = *stack_b;
 	*stack_b = temp;
 	temp2->next = NULL;
-	ft_putstr("rrb ");
 }
 
 void	rrr(t_swap **stack_a, t_swap **stack_b)
@@ -52,7 +50,6 @@ void	rrr(t_swap **stack_a, t_swap **stack_b)
 	{
 		rra(stack_a);
 		rrb(stack_b);
-		ft_putstr("rrr ");
 	}
 	else
 		return ;

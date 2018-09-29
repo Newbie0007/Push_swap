@@ -6,32 +6,47 @@
 /*   By: tngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 14:49:00 by tngwenya          #+#    #+#             */
-/*   Updated: 2018/09/27 14:49:02 by tngwenya         ###   ########.fr       */
+/*   Updated: 2018/09/29 16:19:18 by tngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
+#include "checker_list.h"
 
-int         main(int argc, char **argv)
+char	**returns(int *argc, char **argv)
 {
-    char		*line;
-	t_checker	*pen;
-    int i;
-	
-	if (!(pen = ft_memalloc(sizeof(t_checker))))
-		return (-1);
-    i = 0;
-    while (argv[++i] != NULL)
-    
-	while (1)
+	char *str;
+
+	str = ft_strjoin("a.out ", argv[1]);
+	argv = ft_strsplit(str, ' ');
+	while (argv[*argc])
+		*argc += 1;
+	return (argv);
+}
+
+int		main(int argc, char **argv)
+{
+	int		i;
+	int		num;
+	t_swap	*stack_a;
+	t_swap	*stack_b;
+
+	i = 0;
+	stack_b = NULL;
+	stack_a = NULL;
+	if (argc < 2)
+		return (0);
+	if (argc == 2)
+		argv = returns(&argc, argv);
+	if (arguments(argv) == 0)
+		return (0);
+	while (argv[++i] != '\0')
 	{
-		if (get_next_line(0, &line) == 0)
-			break ;
-        printf("line %s\n", line);
+		num = ft_atoi(argv[i]);
+		stack_a = create_stack(&stack_a, num);
 	}
-    printf("line %s\n", line);
-	free(line);
-	free(pen);
-    return (0);
+	reading(stack_a, stack_b);
+	check_stack(&stack_a, &stack_b, argc);
+	free(stack_a);
+	free(stack_b);
+	return (0);
 }

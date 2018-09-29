@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_list.h"
 
 void	sa(t_swap **stack_a)
 {
@@ -18,10 +18,7 @@ void	sa(t_swap **stack_a)
 
 	temp = *stack_a;
 	if (temp != NULL)
-	{
 		ft_swap(&temp->data, &temp->next->data);
-		ft_putstr("sa ");
-	}
 	else
 		return ;
 }
@@ -32,10 +29,7 @@ void	sb(t_swap **stack_b)
 
 	temp = *stack_b;
 	if (temp != NULL)
-	{
 		ft_swap(&temp->data, &temp->next->data);
-		ft_putstr("sb ");
-	}
 	else
 		return ;
 }
@@ -51,7 +45,6 @@ void	ss(t_swap **stack_a, t_swap **stack_b)
 	{
 		ft_swap(&temp_b->data, &temp_b->next->data);
 		ft_swap(&temp_a->data, &temp_a->next->data);
-		ft_putstr("ss ");
 	}
 	else
 		return ;

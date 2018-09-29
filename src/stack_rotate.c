@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 17:39:57 by tngwenya          #+#    #+#             */
-/*   Updated: 2018/09/25 17:40:14 by tngwenya         ###   ########.fr       */
+/*   Created: 2018/09/29 16:26:27 by tngwenya          #+#    #+#             */
+/*   Updated: 2018/09/29 16:26:30 by tngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ra(t_swap **stack_a)
 	temp = *stack_a;
 	*stack_a = (*stack_a)->next;
 	temp->next = NULL;
-  ft_putstr("ra ");
+	ft_putstr("ra ");
 }
 
 void	rb(t_swap **stack_b)
@@ -37,17 +37,17 @@ void	rb(t_swap **stack_b)
 	temp = *stack_b;
 	*stack_b = (*stack_b)->next;
 	temp->next = NULL;
-  ft_putstr("rb ");
+	ft_putstr("rb ");
 }
 
 void	rr(t_swap **stack_a, t_swap **stack_b)
 {
 	if (*stack_a != NULL && *stack_b != NULL)
-  {
-    ra(stack_a);
-    rb(stack_b);
-    ft_putstr("rr ");
-  }
-  else
-    return ;
+	{
+		ra(stack_a);
+		rb(stack_b);
+		ft_putstr("rr ");
+	}
+	else
+		return ;
 }

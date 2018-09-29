@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_list.h"
 
 void		pa(t_swap **stack_a, t_swap **stack_b)
 {
@@ -21,7 +21,6 @@ void		pa(t_swap **stack_a, t_swap **stack_b)
 	num = (*stack_b)->data;
 	*stack_a = new_link(*stack_a, num);
 	*stack_b = (*stack_b)->next;
-	ft_putstr("pa ");
 }
 
 void		pb(t_swap **stack_a, t_swap **stack_b)
@@ -33,5 +32,4 @@ void		pb(t_swap **stack_a, t_swap **stack_b)
 	num = (*stack_a)->data;
 	*stack_b = new_link(*stack_b, num);
 	*stack_a = (*stack_a)->next;
-	ft_putstr("pb ");
 }

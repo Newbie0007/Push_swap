@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker_list.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/29 17:02:47 by tngwenya          #+#    #+#             */
-/*   Updated: 2018/09/29 17:02:55 by tngwenya         ###   ########.fr       */
+/*   Created: 2018/09/29 16:20:37 by tngwenya          #+#    #+#             */
+/*   Updated: 2018/09/29 16:23:02 by tngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_LIST_H
+# define CHECKER_LIST_H
 # include <stdlib.h>
 # include <unistd.h>
 # include "../libft/libft.h"
