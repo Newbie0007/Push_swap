@@ -27,13 +27,16 @@ void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 			if (stack_a->data > stack_a->next->data)
 			{
 				sa(&stack_a);
+				ra(&stack_a);
 				i = 1;
 			}
 			pb(&stack_a, &stack_b);
 			temp = temp->next;
 		}
+		sb(&stack_b);
 		while (stack_b != NULL)
 			pa(&stack_a, &stack_b);
+		rr(&stack_a, &stack_b);
 	}
 }
 
@@ -46,14 +49,14 @@ void		sort(t_swap *stack_a, t_swap *stack_b, int length)
 	temp = stack_a;
 	stack_b = NULL;
 	length = length + 2;
-	while (temp->next)
+	while (temp->next && temp->data > temp->next->data)
 	{
 		print_stack(&temp);
-		if (cake_swap(temp, temp) == 1 && i < 1)
+		if (i < 1)
 			sa(&temp);
-		if (temp->data > temp->next->data)
+		else if (i > 1)
 			ra(&temp);
-		if (temp->data > temp->next->data)
+		else if (i > 1)
 			rra(&temp);
 		i++;
 		temp = temp->next;
@@ -81,7 +84,8 @@ void		check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
 	if (i == length)
 		ft_putstr("Stack is sorted!!!\n");
 	else
-		sort(*stack_a, *stack_b, length);
+		swap_stack(*stack_a, *stack_b);
+		//sort(*stack_a, *stack_b, length);
 }
 
 int			main(int argc, char **av)
