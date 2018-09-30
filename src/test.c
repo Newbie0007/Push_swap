@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 {
@@ -44,36 +45,42 @@ void		sort(t_swap *stack_a, t_swap *stack_b, int length)
 {
 	int		i;
 	t_swap	*temp;
+	t_swap	*temp2;
 
 	i = 0;
 	temp = stack_a;
-	stack_b = NULL;
+	temp2 = stack_b;
 	length = length + 2;
 	while (1)
 	{while (temp->next && temp->data > temp->next->data)
 	{
 		print_stack(&temp);
-		if (i < 1 && stack_a->next != NULL)
+		if (temp->next != NULL)
 			sa(&temp);
 		if (i > 1)
 			ra(&temp);
-		if (i > 1)
+		//if (i < 4 && temp->next != NULL)
+		//	pb(&temp, &temp2);
+		if (i < 1)
 			rra(&temp);
-		if (i > 4 && stack_a->next != NULL)
-			pb(&temp, &stack_b);
+		//if (i < 1 && temp2->next != NULL)
+			//sb(&temp2);
+		//if (i > 3 && temp2->next != NULL)
+		//	pa(&temp, &temp2);
+		if (i > 2)
+			rr(&temp, &temp2);
+		//if (i > 4 && temp2->next != NULL)
+		//	rrb(&temp2);
 		if (i > 3)
-			sa(&stack_b);
-		if (i > 3 && stack_b->next != NULL)
-			pa(&temp, &stack_b);
-		if (i > 4)
-			rr(&temp, &stack_b);
-		if (i > 4 && stack_b->next != NULL)
-			rrb(&stack_b);
-		if (i > 4)
-			rrr(&temp, &stack_b);
+			rrr(&temp, &temp2);
 		i++;
+		printf("print if i = %d\n", i);
 		temp = temp->next;}
-		
+		//else
+		if (i == length) 
+			break ;
+		i++;
+		printf("print i = %d\n", i);
 	}
 	print_stack(&stack_a);
 	//check_stack(&stack_a, &stack_b, length);
