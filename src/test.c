@@ -11,14 +11,15 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 {
 	t_swap	*temp;
 	int		i;
+	int		j;
 
 	i = 1;
+	j = 0;
 	while (i == 1)
 	{
 		i = 0;
@@ -28,65 +29,41 @@ void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 			if (stack_a->data > stack_a->next->data)
 			{
 				sa(&stack_a);
-				ra(&stack_a);
 				i = 1;
 			}
+			j++;
+			if (check_status(&stack_a, &stack_b, &j) == 1)
+				break ;
 			pb(&stack_a, &stack_b);
 			temp = temp->next;
 		}
-		sb(&stack_b);
 		while (stack_b != NULL)
 			pa(&stack_a, &stack_b);
-		rr(&stack_a, &stack_b);
 	}
-}
-
-void		sort(t_swap *stack_a, t_swap *stack_b, int length)
-{
-	int		i;
-	t_swap	*temp;
-	t_swap	*temp2;
-
-	i = 0;
-	temp = stack_a;
-	temp2 = stack_b;
-	length = length + 2;
-	while (1)
-	{while (temp->next && temp->data > temp->next->data)
-	{
-		print_stack(&temp);
-		if (temp->next != NULL)
-			sa(&temp);
-		if (i > 1)
-			ra(&temp);
-		//if (i < 4 && temp->next != NULL)
-		//	pb(&temp, &temp2);
-		if (i < 1)
-			rra(&temp);
-		//if (i < 1 && temp2->next != NULL)
-			//sb(&temp2);
-		//if (i > 3 && temp2->next != NULL)
-		//	pa(&temp, &temp2);
-		if (i > 2)
-			rr(&temp, &temp2);
-		//if (i > 4 && temp2->next != NULL)
-		//	rrb(&temp2);
-		if (i > 3)
-			rrr(&temp, &temp2);
-		i++;
-		printf("print if i = %d\n", i);
-		temp = temp->next;}
-		//else
-		if (i == length) 
-			break ;
-		i++;
-		printf("print i = %d\n", i);
-	}
+	ft_putchar('\n');
 	print_stack(&stack_a);
-	//check_stack(&stack_a, &stack_b, length);
-	if (i == length)
-		return ;
 }
+
+int			check_status(t_swap **stack_a, t_swap **stack_b, int *argc)
+{
+	t_swap	*temp_a;
+	int		length;
+	int		i;
+
+	temp_a = *stack_a;
+	i = 0;
+	length = *(argc - 2);
+	while (temp_a->next && temp_a->data < temp_a->next->data)
+	{
+		i++;
+		temp_a = temp_a->next;
+	}
+	if (temp_a->next == NULL)
+		return (1);
+	else
+		return (0);
+}
+
 
 void		check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
 {
@@ -97,7 +74,7 @@ void		check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
 	temp_a = *stack_a;
 	i = 0;
 	length = argc - 2;
-	while (temp_a->next != NULL && temp_a->data < temp_a->next->data)
+	while (temp_a->next && temp_a->data < temp_a->next->data)
 	{
 		i++;
 		temp_a = temp_a->next;
@@ -105,11 +82,21 @@ void		check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
 	if (i == length)
 		ft_putstr("Stack is sorted!!!\n");
 	else
-		//swap_stack(*stack_a, *stack_b);
-		sort(*stack_a, *stack_b, length);
+		swap_stack(*stack_a, *stack_b);
 }
 
-int			main(int argc, char **av)
+char	**returns(int *argc, char **argv)
+{
+	char *str;
+
+	str = ft_strjoin("a.out ", argv[1]);
+	argv = ft_strsplit(str, ' ');
+	while (argv[*argc])
+		*argc += 1;
+	return (argv);
+}
+
+int			main(int argc, char **argv)
 {
 	t_swap	*stack_a;
 	t_swap	*stack_b;
@@ -119,19 +106,20 @@ int			main(int argc, char **av)
 	i = 0;
 	stack_b = NULL;
 	stack_a = NULL;
-	if (argc < 3)
+	if (argc < 2)
 		return (0);
-	while (av[++i] != '\0')
+	if (argc == 2)
+		argv = returns(&argc, argv);
+	if (arguments(argv) == 0)
+		return (0);
+	while (argv[++i] != '\0')
 	{
-		if (ft_isdigit(*av[i]) == 0)
-		{
-			ft_putstr("Not valid argument!!!\n");
-			return (0);
-		}
-		num = ft_atoi(av[i]);
+		num = ft_atoi(argv[i]);
 		stack_a = create_stack(&stack_a, num);
 	}
 	check_stack(&stack_a, &stack_b, argc);
 	ft_putchar('\n');
+	free(stack_a);
+	free(stack_b);
 	return (0);
 }

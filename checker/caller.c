@@ -39,7 +39,7 @@ int		arguments(char **argv)
 	i = 0;
 	while (argv[++i] != '\0')
 	{
-		if (ft_isdigit(*argv[i]) == 0)
+		if (ft_isdigit(*argv[i]) == 0 && *av[i] != '-')
 		{
 			ft_putstr("Not valid argument!!!\n");
 			return (0);

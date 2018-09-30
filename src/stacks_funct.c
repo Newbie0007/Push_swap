@@ -53,3 +53,19 @@ void		print_stack(t_swap **stack_a)
 	}
 	ft_putchar('\n');
 }
+
+int			arguments(char **argv)
+{
+	int i;
+
+	i = 0;
+	while (argv[++i] != '\0')
+	{
+		if (ft_isdigit(*argv[i]) == 0 && *argv[i] != '-')
+		{
+			ft_putstr("Not valid argument!!!\n");
+			return (0);
+		}
+	}
+	return (1);
+}
