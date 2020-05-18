@@ -1,59 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_rev_rotate.c                                 :+:      :+:    :+:   */
+/*   stack_rotate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/29 16:27:30 by tngwenya          #+#    #+#             */
-/*   Updated: 2018/09/29 16:27:34 by tngwenya         ###   ########.fr       */
+/*   Created: 2018/09/29 16:26:27 by tngwenya          #+#    #+#             */
+/*   Updated: 2018/09/29 16:26:30 by tngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_list.h"
+#include "push_swap.h"
 
-void	rra(t_swap **stack_a)
+void	ra(t_swap **stack_a)
 {
 	t_swap *temp;
-	t_swap *temp2;
 
 	temp = *stack_a;
-	temp2 = *stack_a;
 	if (temp == NULL || temp->next == NULL)
 		return ;
 	while (temp->next)
 		temp = temp->next;
-	while (temp2->next->next)
-		temp2 = temp2->next;
 	temp->next = *stack_a;
-	*stack_a = temp;
-	temp2->next = NULL;
+	temp = *stack_a;
+	*stack_a = (*stack_a)->next;
+	temp->next = NULL;
+	ft_putstr("ra ");
 }
 
-void	rrb(t_swap **stack_b)
+void	rb(t_swap **stack_b)
 {
 	t_swap *temp;
-	t_swap *temp2;
 
 	temp = *stack_b;
-	temp2 = *stack_b;
 	if (temp == NULL || temp->next == NULL)
 		return ;
 	while (temp->next)
 		temp = temp->next;
-	while (temp2->next->next)
-		temp2 = temp2->next;
 	temp->next = *stack_b;
-	*stack_b = temp;
-	temp2->next = NULL;
+	temp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	temp->next = NULL;
+	ft_putstr("rb ");
 }
 
-void	rrr(t_swap **stack_a, t_swap **stack_b)
+void	rr(t_swap **stack_a, t_swap **stack_b)
 {
 	if (*stack_a != NULL && *stack_b != NULL)
 	{
-		rra(stack_a);
-		rrb(stack_b);
+		ra(stack_a);
+		rb(stack_b);
+		ft_putstr("rr ");
 	}
 	else
 		return ;

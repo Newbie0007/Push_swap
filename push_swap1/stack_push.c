@@ -10,20 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_list.h"
+#include "push_swap.h"
 
+void		pa(t_swap **stack_a, t_swap **stack_b)
+{
+	int	num;
+
+	if (*stack_b == NULL)
+		return ;
+	num = (*stack_b)->data;
+	*stack_a = new_link(*stack_a, num);
+	*stack_b = (*stack_b)->next;
+	ft_putstr("pa ");
+}
+
+void		pb(t_swap **stack_a, t_swap **stack_b)
+{
+	int	num;
+
+	if (*stack_a == NULL)
+		return ;
+	num = (*stack_a)->data;
+	*stack_b = new_link(*stack_b, num);
+	*stack_a = (*stack_a)->next;
+	ft_putstr("pb ");
+}
+/*
 void		pa(t_swap **stack_a, t_swap **stack_b)
 {
 	int	num;
 	t_swap *temp;
 
+	//temp = (t_swap *) malloc(sizeof(t_swap));
 	temp = *stack_b;
 	if (*stack_b == NULL)
 		return ;
 	num = (*stack_b)->data;
 	*stack_a = new_link(*stack_a, num);
 	temp->next = *stack_b;
-	*stack_b = temp->next;
+	*stack_b = temp;
 }
 
 void		pb(t_swap **stack_a, t_swap **stack_b)
@@ -31,11 +56,13 @@ void		pb(t_swap **stack_a, t_swap **stack_b)
 	int	num;
 	t_swap *temp;
 
+	//temp = (t_swap *) malloc(sizeof(t_swap));
 	temp = *stack_a;
 	if (*stack_a == NULL)
 		return ;
 	num = temp->data;
 	*stack_b = new_link(*stack_b, num);
 	temp->next = *stack_a;
-	*stack_a = temp->next;
+	*stack_a = temp;
 }
+*/

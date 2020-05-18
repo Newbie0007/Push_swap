@@ -34,14 +34,13 @@ void	check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
 
 int		arguments(char **argv)
 {
-	int i;
-
-	i = 0;
-	while (argv[++i] != '\0')
-	{
-		if (ft_isdigit(*argv[i]) == 0 && *av[i] != '-')
+	int d;
+	
+	d = 0;
+	while (argv[++d] != '\0'){
+		if (ft_isdigit(*argv[d]) == 0 || *argv[d] == '-')
 		{
-			ft_putstr("Not valid argument!!!\n");
+			ft_putstr("ERROR\n");
 			return (0);
 		}
 	}
@@ -50,12 +49,34 @@ int		arguments(char **argv)
 
 void	reading(t_swap *stack_a, t_swap *stack_b)
 {
+	int count = 0;
 	char *line;
-
-	while (1)
+	
+    t_swap *temp;
+    t_swap *temp1;
+    temp = stack_a;
+    while(temp!=NULL)
+    {
+		if (temp->data >= 2147483647)
+			ft_putstr("ERROR\n");
+        temp1 = stack_a;
+        count=0;
+        while(temp1 != NULL)
+        {
+            if(temp->data == temp1->data)
+                count++;
+            temp1=temp1->next;
+        }
+        if(count>1)
+        {
+            ft_putstr("ERROR\n");
+			return ;
+        }
+        temp=temp->next;
+    }
+	while (get_next_line(0, &line) != 0)
 	{
-		if (get_next_line(0, &line) == 0)
-			break ;
+		ft_putstr(line);
 		compare(&stack_a, &stack_b, line);
 	}
 }
@@ -84,6 +105,8 @@ void	compare(t_swap **stack_a, t_swap **stack_b, char *line)
 		rrb(stack_b);
 	else if (ft_strcmp("rrr", line) == 0)
 		rrr(stack_a, stack_b);
-	else
-		ft_putendl("incorrect input");
+	else if (ft_strcmp("sa", line) == 0)
+		sa(stack_a);
+	else if (ft_strcmp("", line) != 0)
+		ft_putendl("ERROR");
 }

@@ -14,23 +14,31 @@
 
 int			ft_atoi(const char *str)
 {
-	int		n;
-	int		sign;
+	long sum;
+	long x;
+	long neg;
 
-	n = 0;
-	while (*str == ' ' || *str == '\t' || *str == '\v' || *str == '\r' ||
-			*str == '\n' || *str == '\f')
-		str++;
-	sign = *str == '-' ? -1 : 1;
-	if (sign == -1 || *str == '+')
-		str++;
-	while (*str != '\0')
+	sum = 0;
+	neg = 1;
+	x = 0;
+	while ((str[x] >= 9 && str[x] <= 13) || (str[x] == ' '))
+		x++;
+	if (str[x] == '-')
 	{
-		if (*str >= '0' && *str <= '9')
-			n = n * 10 + (*str - '0');
-		else
-			break ;
-		str++;
+		neg = -1;
+		x++;
 	}
-	return (n * sign);
+	else if (str[x] == '+')
+		x++;
+	while (str[x] >= '0' && str[x] <= '9')
+	{
+		sum = sum * 10 + str[x] - '0';
+		x++;
+		if (sum <= (-2147483648) || sum >= (+2147483648))
+		{
+			ft_putstr("ERROR\n");
+			return (sum);
+		}
+	}
+	return (sum * neg);
 }
