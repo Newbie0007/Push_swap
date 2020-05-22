@@ -32,28 +32,14 @@ void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 		temp = stack_a;
 		while (stack_a->next != NULL)
 		{
-			if (stack_a->data > stack_a->next->data && length > 3 && temp1->data < stack_a->data)
-			{
-				ra(&stack_a);
-				sa(&stack_a);
-				i = 1;
-				if (check_status(&stack_a, &stack_b) == 1)
-					break ;
-			}
-			if (temp1->data < stack_a->data && stack_a->data > stack_a->next->data)
-			{
-				ra(&stack_a);
-				i = 1;
-				if (check_status(&stack_a, &stack_b) == 1)
-					break ;
-			}
-			if (stack_a->data > stack_a->next->data && length < 3)
-			{
-				sa(&stack_a);
-				i = 1;
-				if (check_status(&stack_a, &stack_b) == 1)
-					break ;
-			}
+			if (stack_a->data > stack_a->next->data && length < 3 && stack_a->data > temp1->data)
+            {
+                sa(&stack_a);
+                ra(&stack_a);
+                i = 1;
+                if (check_status(&stack_a, &stack_b) == 1)
+                    break ;
+            }
 			if (stack_a->data > stack_a->next->data)
 			{
 				sa(&stack_a);
