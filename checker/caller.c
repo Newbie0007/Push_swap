@@ -40,8 +40,8 @@ int		arguments(char **argv)
 	while (argv[++d] != '\0'){
 		if (ft_isdigit(*argv[d]) == 0 || *argv[d] == '-')
 		{
-			ft_putstr("ERROR\n");
-			return (0);
+		    ft_putendl("ERROR");
+    		return (0);
 		}
 	}
 	return (1);
@@ -58,7 +58,7 @@ void	reading(t_swap *stack_a, t_swap *stack_b)
     while(temp!=NULL)
     {
 		if (temp->data >= 2147483647)
-			ft_putstr("ERROR\n");
+			ft_putendl("ERROR");
         temp1 = stack_a;
         count=0;
         while(temp1 != NULL)
@@ -69,14 +69,14 @@ void	reading(t_swap *stack_a, t_swap *stack_b)
         }
         if(count>1)
         {
-            ft_putstr("ERROR\n");
+            ft_putendl("ERROR");
 			return ;
         }
         temp=temp->next;
     }
 	while (get_next_line(0, &line) != 0)
 	{
-		ft_putstr(line);
+	    ft_putendl(line);
 		compare(&stack_a, &stack_b, line);
 	}
 }
