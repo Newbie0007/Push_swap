@@ -27,7 +27,7 @@ void	check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
 		temp_a = temp_a->next;
 	}
 	if (i == length)
-		ft_putendl_fd("OK", 2);
+		ft_putendl("OK");
 	else
 		ft_putendl("KO");
 }
@@ -57,8 +57,6 @@ void	reading(t_swap *stack_a, t_swap *stack_b)
     temp = stack_a;
     while(temp!=NULL)
     {
-		if (temp->data >= 2147483647)
-			ft_putendl("ERROR");
         temp1 = stack_a;
         count=0;
         while(temp1 != NULL)
@@ -74,39 +72,37 @@ void	reading(t_swap *stack_a, t_swap *stack_b)
         }
         temp=temp->next;
     }
-	while (get_next_line(0, &line) != 0)
+	while (get_next_line(0, &line))
 	{
-	    ft_putendl(line);
 		compare(&stack_a, &stack_b, line);
 	}
+	print_stack(&stack_a);
 }
 
 void	compare(t_swap **stack_a, t_swap **stack_b, char *line)
 {
-	if (ft_strcmp("sa", line) == 0)
+	if (!(ft_strncmp("sa\0", line, 3)))
 		sa(stack_a);
-	else if (ft_strcmp("sb", line) == 0)
+	else if (!(ft_strncmp("sb\0", line, 3)))
 		sb(stack_b);
-	else if (ft_strcmp("ss", line) == 0)
+	else if (!(ft_strncmp("ss\0", line, 3)))
 		ss(stack_a, stack_b);
-	else if (ft_strcmp("pa", line) == 0)
+	else if (!(ft_strncmp("pa\0", line, 3)))
 		pa(stack_a, stack_b);
-	else if (ft_strcmp("pb", line) == 0)
+	else if (!(ft_strncmp("pb\0", line, 3)))
 		pb(stack_a, stack_b);
-	else if (ft_strcmp("ra", line) == 0)
+	else if (!(ft_strncmp("ra\0", line, 3)))
 		ra(stack_a);
-	else if (ft_strcmp("rb", line) == 0)
+	else if (!(ft_strncmp("rb\0", line, 3)))
 		rb(stack_b);
-	else if (ft_strcmp("rrr", line) == 0)
-		rrr(stack_a, stack_b);
-	else if (ft_strcmp("rra", line) == 0)
+	else if (!(ft_strncmp("rr\0", line, 3)))
+		rr(stack_a, stack_b);
+	else if (!(ft_strncmp("rra\0", line, 4)))
 		rra(stack_a);
-	else if (ft_strcmp("rrb", line) == 0)
+	else if (!(ft_strncmp("rrb\0", line, 4)))
 		rrb(stack_b);
-	else if (ft_strcmp("rrr", line) == 0)
+	else if (!(ft_strncmp("rrr\0", line, 4)))
 		rrr(stack_a, stack_b);
-	else if (ft_strcmp("sa", line) == 0)
-		sa(stack_a);
-	else if (ft_strcmp("", line) != 0)
+	else
 		ft_putendl("ERROR");
 }

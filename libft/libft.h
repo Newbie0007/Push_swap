@@ -16,7 +16,18 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# define BUFF_SIZE 1
+//# include "get_next_line.h"
+//# define BUFF_SIZE 1
+# define BUFF_SIZE 1000
+
+typedef struct		s_buff
+{
+	char			*buff;
+	int				mem;
+	int				fd;
+	struct s_buff	*next;
+	struct s_buff	*prev;
+}					t_buff;
 
 typedef struct		s_list
 {
@@ -84,6 +95,7 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+char				*ft_strjoinf(char const *s1, char const *s2);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));

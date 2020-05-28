@@ -12,73 +12,110 @@
 
 #include "libft.h"
 
-static	t_list	*findlink(t_list **file, int fd)
+t_buff		*new_buff(int fd, int add, t_buff **buff)
 {
-	t_list *temp;
+	t_buff			*new;
 
-	temp = *file;
-	while (temp)
+	if (!(new = malloc(sizeof(t_buff))))
+		return (NULL);
+	new->buff = ft_strnew(BUFF_SIZE);
+	new->mem = -1;
+	new->fd = fd;
+	new->next = NULL;
+	if (add)
 	{
-		if ((int)temp->content_size == fd)
-			return (temp);
-		temp = temp->next;
+		new->next = *buff;
+		*buff = new;
+		return (new);
 	}
-	temp = ft_lstnew("\0", fd);
-	ft_lstadd(file, temp);
-	return (temp);
+	return (new);
 }
 
-static int		getposition(char *temp)
+int			read_line(int fd, t_buff *buff, char **line, int verif)
 {
-	size_t i;
+	int				r;
+	int				i;
 
-	i = 0;
-	while (temp[i] != '\n' && temp[i] != '\0')
+	while ((r = read(fd, buff->buff, BUFF_SIZE)) > 0)
+	{
+		buff->mem = -1;
+		(buff->buff)[r] = '\0';
+		i = 0;
+		while ((buff->buff)[i])
+		{
+			if ((buff->buff)[i] == '\n')
+			{
+				*line = ft_strjoinf(*line, ft_strsub(buff->buff, 0, i));
+				if ((buff->buff)[i + 1])
+					buff->mem = i + 1;
+				return (1);
+			}
+			i++;
+		}
+		*line = ft_strjoinf(*line, ft_strdup(buff->buff));
+		verif = 1;
+	}
+	if (r == -1)
+		return (-1);
+	return (verif);
+}
+
+int			check_mem(int fd, t_buff *buff, char **line)
+{
+	int				i;
+
+	i = buff->mem;
+	while ((buff->buff)[i])
+	{
+		if ((buff->buff)[i] == '\n')
+		{
+			*line = ft_strjoinf(*line, ft_strsub(buff->buff, buff->mem,
+						i - buff->mem));
+			buff->mem = -1;
+			if ((buff->buff)[i + 1])
+				buff->mem = i + 1;
+			return (1);
+		}
 		i++;
-	return (i);
-}
-
-static int		gnlfunct(t_list **file, char **line)
-{
-	int		i;
-	t_list	*temp;
-	char	*tmp2;
-
-	temp = *file;
-	i = getposition(temp->content);
-	tmp2 = temp->content;
-	*line = ft_strsub(temp->content, 0, i);
-	if ((size_t)i == ft_strlen(temp->content))
-		ft_strclr(temp->content);
-	else
-	{
-		temp->content = ft_strsub(tmp2, i + 1, ft_strlen(tmp2));
-		free(tmp2);
 	}
+	*line = ft_strjoinf(*line, ft_strsub(buff->buff, buff->mem, i - buff->mem));
+	buff->mem = -1;
+	read_line(fd, buff, line, 0);
 	return (1);
 }
 
-int				get_next_line(const int fd, char **line)
+t_buff		*check_buff(int fd, t_buff **copy)
 {
-	char			buffer[BUFF_SIZE + 1];
-	int				iter;
-	static t_list	*file;
-	t_list			*temp;
-	char			*tmp2;
-
-	if (fd < 0 || !line || read(fd, buffer, 0) < 0)
-		return (-1);
-	temp = findlink(&file, fd);
-	while ((iter = read(fd, buffer, BUFF_SIZE)) > 0)
+	while (*copy)
 	{
-		tmp2 = temp->content;
-		buffer[iter] = '\0';
-		temp->content = ft_strjoin(temp->content, buffer);
-		free(tmp2);
-		if (ft_strchr(buffer, '\n'))
-			break ;
+		if ((*copy)->fd == fd)
+			return (*copy);
+		else
+			*copy = (*copy)->next;
 	}
-	if (iter == 0 && !ft_strlen(temp->content))
-		return (0);
-	return (gnlfunct(&temp, line));
+	return (NULL);
+}
+
+int			get_next_line(const int fd, char **line)
+{
+	static t_buff	*buff;
+	t_buff			*copy;
+	int				exists;
+
+	if (!line)
+		return (-1);
+	exists = 0;
+	if (!buff)
+	{
+		buff = new_buff(fd, 0, NULL);
+		exists = 1;
+	}
+	copy = buff;
+	if (!check_buff(fd, &copy))
+		copy = new_buff(fd, 1, &buff);
+	*line = ft_strdup("\0");
+	if (copy->mem != -1)
+		if (check_mem(fd, copy, line))
+			return (1);
+	return (read_line(fd, copy, line, 0));
 }

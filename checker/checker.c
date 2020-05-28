@@ -31,7 +31,6 @@ int		main(int argc, char **argv)
 	t_swap	*stack_b;
 
 	i = 0;
-	stack_b = NULL;
 	stack_a = NULL;
 	if (argc < 2)
 		return (0);

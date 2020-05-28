@@ -28,6 +28,7 @@ void	rra(t_swap **stack_a)
 	temp->next = *stack_a;
 	*stack_a = temp;
 	temp2->next = NULL;
+	ft_putendl("rra");
 }
 
 void	rrb(t_swap **stack_b)
@@ -46,15 +47,55 @@ void	rrb(t_swap **stack_b)
 	temp->next = *stack_b;
 	*stack_b = temp;
 	temp2->next = NULL;
+	ft_putendl("rrb");
+}
+void	rra2(t_swap **stack_a)
+{
+	t_swap *temp;
+	t_swap *temp2;
+
+	temp = *stack_a;
+	temp2 = *stack_a;
+	if (temp == NULL || temp->next == NULL)
+		return ;
+	while (temp->next)
+		temp = temp->next;
+	while (temp2->next->next)
+		temp2 = temp2->next;
+	temp->next = *stack_a;
+	*stack_a = temp;
+	temp2->next = NULL;
+	//ft_putendl(rra);
+}
+
+void	rrb2(t_swap **stack_b)
+{
+	t_swap *temp;
+	t_swap *temp2;
+
+	temp = *stack_b;
+	temp2 = *stack_b;
+	if (temp == NULL || temp->next == NULL)
+		return ;
+	while (temp->next)
+		temp = temp->next;
+	while (temp2->next->next)
+		temp2 = temp2->next;
+	temp->next = *stack_b;
+	*stack_b = temp;
+	temp2->next = NULL;
+	//ft_putendl(rrb);
 }
 
 void	rrr(t_swap **stack_a, t_swap **stack_b)
 {
 	if (*stack_a != NULL && *stack_b != NULL)
 	{
-		rra(stack_a);
-		rrb(stack_b);
+		rra2(stack_a);
+		rrb2(stack_b);
+		ft_putendl("rrr");
 	}
 	else
 		return ;
 }
+
