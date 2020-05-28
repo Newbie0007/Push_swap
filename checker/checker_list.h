@@ -37,10 +37,10 @@ t_swap				*new_link(t_swap *link, int num);
 t_swap				*create_stack(t_swap **link, int num);
 void				print_stack(t_swap **stack_a);
 void				reverse(t_swap **headref);
-void				check_stack(t_swap **stack_a, t_swap **stack_b, int argc);
+void				check_stack(t_swap **stack_a, int argc);
 int					cake_swap(t_swap *stack_a, t_swap *stack_b);
 void				compare(t_swap **stack_a, t_swap **stack_b, char *line);
 int					arguments(char **argv);
-void				reading(t_swap *stack_a, t_swap *stack_b);
+void				reading_doubles(t_swap **stack_a);
 
 #endif

@@ -12,6 +12,26 @@
 
 #include "checker_list.h"
 
+void	check_stack(t_swap **stack_a, int argc)
+{
+	t_swap	*temp_a;
+	int		length;
+	int		i;
+	
+	temp_a = *stack_a;
+	i = 0;
+	length = argc - 2;
+	while (temp_a->next != NULL && temp_a->data < temp_a->next->data)
+	{
+		i++;
+		temp_a = temp_a->next;
+	}
+	if (i == length)
+		ft_putendl("OK");
+	else
+		ft_putendl("KO");
+}
+
 char	**returns(int *argc, char **argv)
 {
 	char *str;
@@ -23,12 +43,17 @@ char	**returns(int *argc, char **argv)
 	return (argv);
 }
 
+void fun(void) 
+{
+   ft_putstr("Exiting"); 
+} 
 int		main(int argc, char **argv)
 {
 	int		i;
 	int		num;
 	t_swap	*stack_a;
 	t_swap	*stack_b;
+	char	*str;
 
 	i = 0;
 	stack_a = NULL;
@@ -43,8 +68,10 @@ int		main(int argc, char **argv)
 		num = ft_atoi(argv[i]);
 		stack_a = create_stack(&stack_a, num);
 	}
-	reading(stack_a, stack_b);
-	check_stack(&stack_a, &stack_b, argc);
+	reading_doubles(&stack_a);
+	while (get_next_line(0, &str))
+		compare(&stack_a, &stack_b, str);
+	check_stack(&stack_a, argc);
 	free(stack_a);
 	free(stack_b);
 	return (0);

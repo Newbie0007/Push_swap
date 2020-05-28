@@ -12,33 +12,13 @@
 
 #include "checker_list.h"
 
-void	check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
-{
-	t_swap	*temp_a;
-	int		length;
-	int		i;
-
-	temp_a = *stack_a;
-	i = 0;
-	length = argc - 2;
-	while (temp_a->next != NULL && temp_a->data < temp_a->next->data)
-	{
-		i++;
-		temp_a = temp_a->next;
-	}
-	if (i == length)
-		ft_putendl("OK");
-	else
-		ft_putendl("KO");
-}
-
 int		arguments(char **argv)
 {
 	int d;
 	
 	d = 0;
 	while (argv[++d] != '\0'){
-		if (ft_isdigit(*argv[d]) == 0 || *argv[d] == '-')
+		if (ft_isdigit(*argv[d]) == 0 || *argv[d] == '-' || *argv[d] >= 2147483647 || *argv[d] <= -2147483648)
 		{
 		    ft_putendl("ERROR");
     		return (0);
@@ -47,17 +27,17 @@ int		arguments(char **argv)
 	return (1);
 }
 
-void	reading(t_swap *stack_a, t_swap *stack_b)
+void	reading_doubles(t_swap **stack_a)
 {
 	int count = 0;
 	char *line;
 	
     t_swap *temp;
     t_swap *temp1;
-    temp = stack_a;
+    temp = *stack_a;
     while(temp!=NULL)
     {
-        temp1 = stack_a;
+        temp1 = *stack_a;
         count=0;
         while(temp1 != NULL)
         {
@@ -72,15 +52,13 @@ void	reading(t_swap *stack_a, t_swap *stack_b)
         }
         temp=temp->next;
     }
-	while (get_next_line(0, &line))
-	{
-		compare(&stack_a, &stack_b, line);
-	}
-	print_stack(&stack_a);
 }
 
 void	compare(t_swap **stack_a, t_swap **stack_b, char *line)
 {
+	//ft_putendl("Print from compare");
+	//print_stack(stack_a);
+	//ft_putnbr(&stack_a->data);
 	if (!(ft_strncmp("sa\0", line, 3)))
 		sa(stack_a);
 	else if (!(ft_strncmp("sb\0", line, 3)))

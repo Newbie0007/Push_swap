@@ -12,40 +12,50 @@
 
 #include "checker_list.h"
 
+t_swap	*push(t_swap **head_ref, int new_data) 
+{ 
+    t_swap	*new_node = (t_swap*) malloc(sizeof(t_swap)); 
+  
+    new_node->data  = new_data; 
+    new_node->next = (*head_ref); 
+    (*head_ref)    = new_node; 
+	return *head_ref;
+} 
+
 void	rra(t_swap **stack_a)
 {
-	t_swap *temp;
-	t_swap *temp2;
-
-	temp = *stack_a;
-	temp2 = *stack_a;
-	if (temp == NULL || temp->next == NULL)
-		return ;
-	while (temp->next)
-		temp = temp->next;
-	while (temp2->next->next)
-		temp2 = temp2->next;
-	temp->next = *stack_a;
-	*stack_a = temp;
-	temp2->next = NULL;
+	if (*stack_a == NULL || (*stack_a)->next == NULL) 
+        return; 
+    t_swap *secLast = NULL;
+    t_swap *last;
+	
+	last = *stack_a;
+    while (last->next != NULL) 
+    { 
+        secLast = last; 
+        last = last->next; 
+    } 
+    secLast->next = NULL;
+	last->next = *stack_a;
+	*stack_a = last; 
 }
 
 void	rrb(t_swap **stack_b)
 {
-	t_swap *temp;
-	t_swap *temp2;
-
-	temp = *stack_b;
-	temp2 = *stack_b;
-	if (temp == NULL || temp->next == NULL)
-		return ;
-	while (temp->next)
-		temp = temp->next;
-	while (temp2->next->next)
-		temp2 = temp2->next;
-	temp->next = *stack_b;
-	*stack_b = temp;
-	temp2->next = NULL;
+	if (*stack_b == NULL || (*stack_b)->next == NULL) 
+        return; 
+    t_swap *secLast = NULL;
+    t_swap *last;
+	
+	last = *stack_b;
+    while (last->next != NULL) 
+    { 
+        secLast = last; 
+        last = last->next; 
+    } 
+    secLast->next = NULL;
+	last->next = *stack_b;
+	*stack_b = last;
 }
 
 void	rrr(t_swap **stack_a, t_swap **stack_b)
