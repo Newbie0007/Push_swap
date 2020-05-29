@@ -56,9 +56,6 @@ void	reading_doubles(t_swap **stack_a)
 
 void	compare(t_swap **stack_a, t_swap **stack_b, char *line)
 {
-	//ft_putendl("Print from compare");
-	//print_stack(stack_a);
-	//ft_putnbr(&stack_a->data);
 	if (!(ft_strncmp("sa\0", line, 3)))
 		sa(stack_a);
 	else if (!(ft_strncmp("sb\0", line, 3)))
@@ -84,3 +81,28 @@ void	compare(t_swap **stack_a, t_swap **stack_b, char *line)
 	else
 		ft_putendl("ERROR");
 }
+
+/*if (ft_strcmp("sa", line) == 0)
+		sa(stack_a);
+	else if (ft_strcmp("sb", line) == 0)
+		sb(stack_b);
+	else if (ft_strcmp("ss", line) == 0)
+		ss(stack_a, stack_b);
+	else if (ft_strcmp("pa", line) == 0)
+		pa(stack_a, stack_b);
+	else if (ft_strcmp("pb", line) == 0)
+		pb(stack_a, stack_b);
+	else if (ft_strcmp("ra", line) == 0)
+		ra(stack_a);
+	else if (ft_strcmp("rb", line) == 0)
+		rb(stack_b);
+	else if (ft_strcmp("rrr", line) == 0)
+		rrr(stack_a, stack_b);
+	else if (ft_strcmp("rra", line) == 0)
+		rra(stack_a);
+	else if (ft_strcmp("rrb", line) == 0)
+		rrb(stack_b);
+	else if (ft_strcmp("rrr", line) == 0)
+		rrr(stack_a, stack_b);
+	else
+		ft_putendl("incorrect input");*/

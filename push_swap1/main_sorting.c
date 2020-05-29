@@ -124,15 +124,14 @@ int			main(int argc, char **argv)
 	if (argc == 2)
 		argv = returns(&argc, argv);
 	if (arguments(argv) == 0 || argc < 2)
-		return (0);
+		return (1);
 	while (argv[++i] != '\0')
 	{
 		num = ft_atoi(argv[i]);
 		stack_a = create_stack(&stack_a, num);
 	}
 	check_stack(&stack_a, &stack_b, argc);
-	//ft_putchar('\n');
 	free(stack_a);
 	free(stack_b);
-	return (0);
+	return (1);
 }

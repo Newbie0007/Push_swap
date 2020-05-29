@@ -38,7 +38,6 @@ t_swap				*create_stack(t_swap **link, int num);
 void				print_stack(t_swap **stack_a);
 void				reverse(t_swap **headref);
 void				check_stack(t_swap **stack_a, t_swap **stack_b, int argc);
-int					cake_swap(t_swap *stack_a, int *go);
 void				compare(t_swap **stack_a, t_swap **stack_b, char *line);
 int					arguments(char **argv);
 int					ft_min(int *tab, unsigned int len);

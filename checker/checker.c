@@ -57,12 +57,10 @@ int		main(int argc, char **argv)
 
 	i = 0;
 	stack_a = NULL;
-	if (argc < 2)
-		return (0);
 	if (argc == 2)
 		argv = returns(&argc, argv);
-	if (arguments(argv) == 0)
-		return (0);
+	if (arguments(argv) == 0 || argc < 2)
+		return (1);
 	while (argv[++i] != '\0')
 	{
 		num = ft_atoi(argv[i]);

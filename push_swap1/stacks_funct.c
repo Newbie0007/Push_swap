@@ -63,7 +63,7 @@ int			arguments(char **argv)
 	{
 		if (ft_isdigit(*argv[i]) == 0 && *argv[i] != '-')
 		{
-			ft_putstr("Not valid argument!!!\n");
+			ft_putendl("ERROR");
 			return (0);
 		}
 	}
