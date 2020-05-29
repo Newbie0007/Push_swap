@@ -42,7 +42,7 @@ void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 			if (stack_a->data < stack_a->next->data && length < 3 && stack_a->data > temp1->data)
             {
 				rra(&stack_a);
-				ft_putstr("I am here");
+				//ft_putstr("I am here");
                 i = 1;
                 if (check_status(&stack_a, &stack_b) == 1)
                     break ;
@@ -62,8 +62,8 @@ void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 		while (stack_b != NULL)
 			pa(&stack_a, &stack_b);
 	}
-	ft_putchar('\n');
-	print_stack(&stack_a);
+	//ft_putchar('\n');
+	//print_stack(&stack_a);
 }
 
 int			check_status(t_swap **stack_a, t_swap **stack_b)
@@ -131,7 +131,7 @@ int			main(int argc, char **argv)
 		stack_a = create_stack(&stack_a, num);
 	}
 	check_stack(&stack_a, &stack_b, argc);
-	ft_putchar('\n');
+	//ft_putchar('\n');
 	free(stack_a);
 	free(stack_b);
 	return (0);
