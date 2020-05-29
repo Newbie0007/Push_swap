@@ -44,5 +44,6 @@ int					ft_min(int *tab, unsigned int len);
 void				reading(t_swap *stack_a, t_swap *stack_b);
 int					check_status(t_swap **stack_a, t_swap **stack_b);
 int					arguments(char **argv);
+void				swaps_stack(t_swap *stack_a, t_swap *stack_b);
 
 #endif
