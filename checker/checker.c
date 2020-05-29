@@ -57,6 +57,7 @@ int		main(int argc, char **argv)
 
 	i = 0;
 	stack_a = NULL;
+	stack_b = NULL;
 	if (argc == 2)
 		argv = returns(&argc, argv);
 	if (arguments(argv) == 0 || argc < 2)

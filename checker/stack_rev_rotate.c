@@ -23,13 +23,13 @@ t_swap	*push(t_swap **head_ref, int new_data)
 } 
 
 void	rra(t_swap **stack_a)
-{
-	if (*stack_a == NULL || (*stack_a)->next == NULL) 
-        return; 
+{ 
     t_swap *secLast = NULL;
     t_swap *last;
 	
 	last = *stack_a;
+	if (last == NULL) 
+        return ;
     while (last->next != NULL) 
     { 
         secLast = last; 
@@ -41,13 +41,13 @@ void	rra(t_swap **stack_a)
 }
 
 void	rrb(t_swap **stack_b)
-{
-	if (*stack_b == NULL || (*stack_b)->next == NULL) 
-        return; 
+{ 
     t_swap *secLast = NULL;
     t_swap *last;
 	
 	last = *stack_b;
+	if (last == NULL) 
+        return ;
     while (last->next != NULL) 
     { 
         secLast = last; 
@@ -60,7 +60,12 @@ void	rrb(t_swap **stack_b)
 
 void	rrr(t_swap **stack_a, t_swap **stack_b)
 {
-	if (*stack_a != NULL && *stack_b != NULL)
+	t_swap	*temp1;
+	t_swap	*temp2;
+	
+	temp1 = *stack_a;
+	temp2 = *stack_b;
+	if (temp1 != NULL && temp2 != NULL)
 	{
 		rra(stack_a);
 		rrb(stack_b);
