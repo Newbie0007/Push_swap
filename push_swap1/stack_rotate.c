@@ -76,7 +76,7 @@ void	rb2(t_swap **stack_b)
 }
 void	rr(t_swap **stack_a, t_swap **stack_b)
 {
-	if (*stack_a != NULL && *stack_b != NULL)
+	if (*stack_a != NULL && *stack_b != NULL  && (*stack_a)->next != NULL && (*stack_b)->next != NULL)
 	{
 		ra2(stack_a);
 		rb2(stack_b);

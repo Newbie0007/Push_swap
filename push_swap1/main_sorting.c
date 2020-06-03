@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.data                                          :+:      :+:    :+:   */
+/*   main_sorting.data                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,44 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void		swaps_stack(t_swap *stack_a, t_swap *stack_b)
-{
-	t_swap	*temp, *temp1;
-	int		i;
-
-	temp1 = stack_a;
-	while (temp1->next != NULL)
-	{
-		i++;
-		temp1 = temp1->next;
-	}
-	i = 1;
-	while (i == 1)
-	{
-		i = 0;
-		temp = stack_a;
-		while (stack_a->next != NULL)
-		{
-			if (stack_a->data > stack_a->next->data)
-			{
-				sa(&stack_a);
-				i = 1;
-			}
-			if (stack_a->data > stack_a->next->data && stack_a->next->data > temp1->data)
-			{
-				rra(&stack_a);
-				i = 1;
-			}
-			if (check_status(&stack_a, &stack_b) == 1)
-				break ;
-			pb(&stack_a, &stack_b);
-			temp = temp->next;
-		}
-		while (stack_b != NULL)
-			pa(&stack_a, &stack_b);
-	}
-}
 
 void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 {
@@ -63,43 +25,20 @@ void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 		temp1 = temp1->next;
 	}
 	int length = i;
-	i = 1;
-	if (length > 3)
-		swaps_stack(stack_a, stack_b);
-	while (i == 1)
+	if (length < 5)
 	{
-		i = 0;
-		temp = stack_a;
-		while (stack_a->next != NULL)
-		{
-			if (stack_a->data > stack_a->next->data && length < 3 && stack_a->data > temp1->data)
-            {
-				ra(&stack_a);
-                i = 1;
-                if (check_status(&stack_a, &stack_b) == 1)
-                    break ;
-            }
-			if (stack_a->data < stack_a->next->data && length < 3 && stack_a->data > temp1->data)
-            {
-				rra(&stack_a);
-                i = 1;
-                if (check_status(&stack_a, &stack_b) == 1)
-                    break ;
-            }
-			if (stack_a->data > stack_a->next->data)
-			{
-				sa(&stack_a);
-				i = 1;
-				if (check_status(&stack_a, &stack_b) == 1)
-					break ;
-			}
-			if (check_status(&stack_a, &stack_b) == 1)
-				break ;
-			pb(&stack_a, &stack_b);
-			temp = temp->next;
-		}
-		while (stack_b != NULL)
-			pa(&stack_a, &stack_b);
+		swaps_stack(stack_a, stack_b, temp1);
+		return ;
+	}
+	if (length < 3)
+	{
+		swaps_stack2(stack_a, stack_b, temp1);
+		return ;
+	}
+	else
+	{
+		swaps_stack100(stack_a, stack_b, temp1);
+		return ;
 	}
 }
 

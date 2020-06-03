@@ -35,34 +35,3 @@ void		pb(t_swap **stack_a, t_swap **stack_b)
 	*stack_a = (*stack_a)->next;
 	ft_putendl("pb");
 }
-/*
-void		pa(t_swap **stack_a, t_swap **stack_b)
-{
-	int	num;
-	t_swap *temp;
-
-	//temp = (t_swap *) malloc(sizeof(t_swap));
-	temp = *stack_b;
-	if (*stack_b == NULL)
-		return ;
-	num = (*stack_b)->data;
-	*stack_a = new_link(*stack_a, num);
-	temp->next = *stack_b;
-	*stack_b = temp;
-}
-
-void		pb(t_swap **stack_a, t_swap **stack_b)
-{
-	int	num;
-	t_swap *temp;
-
-	//temp = (t_swap *) malloc(sizeof(t_swap));
-	temp = *stack_a;
-	if (*stack_a == NULL)
-		return ;
-	num = temp->data;
-	*stack_b = new_link(*stack_b, num);
-	temp->next = *stack_a;
-	*stack_a = temp;
-}
-*/

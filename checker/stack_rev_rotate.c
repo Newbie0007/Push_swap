@@ -28,7 +28,7 @@ void	rra(t_swap **stack_a)
     t_swap *last;
 	
 	last = *stack_a;
-	if (last == NULL) 
+	if (last == NULL || last->next == NULL) 
         return ;
     while (last->next != NULL) 
     { 
@@ -46,7 +46,7 @@ void	rrb(t_swap **stack_b)
     t_swap *last;
 	
 	last = *stack_b;
-	if (last == NULL) 
+	if (last == NULL || last->next == NULL) 
         return ;
     while (last->next != NULL) 
     { 
@@ -65,7 +65,7 @@ void	rrr(t_swap **stack_a, t_swap **stack_b)
 	
 	temp1 = *stack_a;
 	temp2 = *stack_b;
-	if (temp1 != NULL && temp2 != NULL)
+	if (temp1 != NULL && temp1->next != NULL && temp2 != NULL && temp2->next != NULL)
 	{
 		rra(stack_a);
 		rrb(stack_b);

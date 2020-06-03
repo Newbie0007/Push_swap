@@ -64,8 +64,7 @@ void	rra2(t_swap **stack_a)
     } 
     secLast->next = NULL;
 	last->next = *stack_a;
-	*stack_a = last; 
-	//ft_putendl(rra);
+	*stack_a = last;
 }
 
 void	rrb2(t_swap **stack_b)
@@ -84,12 +83,11 @@ void	rrb2(t_swap **stack_b)
     secLast->next = NULL;
 	last->next = *stack_b;
 	*stack_b = last;
-	//ft_putendl(rrb);
 }
 
 void	rrr(t_swap **stack_a, t_swap **stack_b)
 {
-	if (*stack_a != NULL && *stack_b != NULL)
+	if (*stack_a != NULL && *stack_b != NULL && (*stack_a)->next != NULL && (*stack_b)->next != NULL)
 	{
 		rra2(stack_a);
 		rrb2(stack_b);

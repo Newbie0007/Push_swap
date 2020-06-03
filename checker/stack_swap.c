@@ -18,10 +18,7 @@ void	sa(t_swap **stack_a)
 
 	temp = *stack_a;
 	if (temp != NULL && temp->next != NULL)
-	{
 		ft_swap(&temp->data, &temp->next->data);
-		//ft_putendl("sa");
-	}
 	else
 		return ;
 }
@@ -32,10 +29,7 @@ void	sb(t_swap **stack_b)
 
 	temp = *stack_b;
 	if (temp != NULL && temp->next != NULL)
-	{
 		ft_swap(&temp->data, &temp->next->data);
-		//ft_putendl("sb");
-	}
 	else
 		return ;
 }
@@ -51,7 +45,6 @@ void	ss(t_swap **stack_a, t_swap **stack_b)
 	{
 		ft_swap(&temp_b->data, &temp_b->next->data);
 		ft_swap(&temp_a->data, &temp_a->next->data);
-		//ft_putendl("ss");
 	}
 	else
 		return ;
