@@ -18,7 +18,7 @@ void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 
 	temp = stack_a;
 	temp->length = getlength(temp);
-	if (temp->length <= 4)
+	if (temp->length <= 5)
 	{
 		swaps_stack5(stack_a, stack_b);
 		return ;
