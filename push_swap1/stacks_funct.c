@@ -69,3 +69,18 @@ int			arguments(char **argv)
 	}
 	return (1);
 }
+
+int			getlength(t_swap *stack_a)
+{
+	int 	length;
+	t_swap *temp;
+
+	length = 1;
+	temp = stack_a;
+	while (temp->next != NULL)
+	{
+		length++;
+		temp = temp->next;
+	}
+	return length;
+}

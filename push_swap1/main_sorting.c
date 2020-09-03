@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_sorting.data                                          :+:      :+:    :+:   */
+/*   main_sorting.data                          		 :+:      :+:    :+:  */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,35 +14,23 @@
 
 void		swap_stack(t_swap *stack_a, t_swap *stack_b)
 {
-	t_swap	*temp, *temp1;
-	int		i;
+	t_swap	*temp;
 
-	i = 0;
-	temp1 = stack_a;
-	while (temp1->next != NULL)
+	temp = stack_a;
+	temp->length = getlength(temp);
+	if (temp->length <= 4)
 	{
-		i++;
-		temp1 = temp1->next;
-	}
-	int length = i;
-	if (length < 5)
-	{
-		swaps_stack(stack_a, stack_b, temp1);
-		return ;
-	}
-	if (length < 3)
-	{
-		swaps_stack2(stack_a, stack_b, temp1);
+		swaps_stack5(stack_a, stack_b);
 		return ;
 	}
 	else
 	{
-		swaps_stack100(stack_a, stack_b, temp1);
+		swaps_stack100(stack_a, stack_b);
 		return ;
 	}
 }
 
-int			check_status(t_swap **stack_a, t_swap **stack_b)
+int			check_status(t_swap **stack_a)
 {
 	t_swap	*temp_a;
 
@@ -54,7 +42,6 @@ int			check_status(t_swap **stack_a, t_swap **stack_b)
 	else
 		return (0);
 }
-
 
 void		check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
 {
@@ -71,7 +58,7 @@ void		check_stack(t_swap **stack_a, t_swap **stack_b, int argc)
 		temp_a = temp_a->next;
 	}
 	if (i == length)
-		return ;	//ft_putstr("Stack is sorted!!!\n");
+		return ;
 	else
 		swap_stack(*stack_a, *stack_b);
 }

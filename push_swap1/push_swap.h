@@ -19,6 +19,7 @@
 typedef struct		s_swap
 {
 	int				data;
+	int				length;
 	struct s_swap	*next;
 }					t_swap;
 
@@ -36,17 +37,16 @@ void				rrr(t_swap **stack_a, t_swap **stack_b);
 t_swap				*new_link(t_swap *link, int num);
 t_swap				*create_stack(t_swap **link, int num);
 void				print_stack(t_swap **stack_a);
-void				reverse(t_swap **headref);
 void				check_stack(t_swap **stack_a, t_swap **stack_b, int argc);
 void				compare(t_swap **stack_a, t_swap **stack_b, char *line);
 int					arguments(char **argv);
+int					getlength(t_swap *stack_a);
 int					ft_min(int *tab, unsigned int len);
 void				reading(t_swap *stack_a, t_swap *stack_b);
-int					check_status(t_swap **stack_a, t_swap **stack_b);
+int					check_status(t_swap **stack_a);
 int					arguments(char **argv);
 void				swap_stack(t_swap *stack_a, t_swap *stack_b);
-void				swaps_stack(t_swap *stack_a, t_swap *stack_b, t_swap *temp1);
-void				swaps_stack2(t_swap *stack_a, t_swap *stack_b, t_swap *temp1);
-void				swaps_stack100(t_swap *stack_a, t_swap *stack_b, t_swap *temp1);
+void				swaps_stack5(t_swap *stack_a, t_swap *stack_b);
+void				swaps_stack100(t_swap *stack_a, t_swap *stack_b);
 
 #endif

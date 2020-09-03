@@ -22,12 +22,12 @@ void	rra(t_swap **stack_a)
 	last = *stack_a;
     while (last->next != NULL) 
     { 
-        secLast = last; 
+        secLast = last;
         last = last->next; 
     } 
     secLast->next = NULL;
 	last->next = *stack_a;
-	*stack_a = last; 
+	*stack_a = last;
 	ft_putendl("rra");
 }
 

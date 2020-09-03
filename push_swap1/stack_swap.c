@@ -22,10 +22,11 @@ void	sa(t_swap **stack_a)
 		ft_swap(&temp->data, &temp->next->data);
 		*stack_a = temp;
 		ft_putendl("sa");
+
+		return ;
 	}
 	else
 		return ;
-	//free(temp);
 }
 
 void	sb(t_swap **stack_b)
@@ -41,7 +42,6 @@ void	sb(t_swap **stack_b)
 	}
 	else
 		return ;
-	//free(temp);
 }
 
 void	ss(t_swap **stack_a, t_swap **stack_b)
