@@ -39,10 +39,11 @@ static void	executePB(t_swap **stack_a, t_swap **stack_b, int iter)
 	int a;
 	
 	a = 1;
-	while(a < iter)
+	if (!stack_a)
+		return ;
+	while(a <= iter)
 	{
-		if ((**stack_b).next != NULL)
-			pa(stack_a, stack_b);
+		pa(stack_a, stack_b);
 		a++;
 	}
 }
@@ -74,30 +75,25 @@ void		swaps_stack100(t_swap *stack_a, t_swap *stack_b)
 	while (i == 1)
 	{
 		temp = stack_a;
-        ft_putendl("These are the properties");
-        ft_putnbr(less);
         length = getlength(stack_a);
         min = findMaxMin(stack_a, 0);
         position = ft_position(stack_a, min);
-        ft_putnbr(length);
-        ft_putnbr(min);
-        ft_putnbr(position);
 		while (temp != NULL)
 		{
-            if (stack_a->next == NULL && stack_b != NULL)
-                executePB(&stack_a, &stack_b, less);
 			if (check_status(&stack_a) == 1 && stack_b == NULL)
-			{
-                ft_putendl("This is done");
-                print_stack(&stack_a);
 				exit(0);
-			}
             if (stack_a->data == min && check_status(&stack_a) != 1)
             {
                 pb(&stack_a, &stack_b);
                 break ;
             }
-            (position <= (length/2)) ? ra(&stack_a) : rra(&stack_a);
+			 if (check_status(&stack_a) == 1 && stack_b != NULL)
+			{
+                executePB(&stack_a, &stack_b, less);
+				break ;
+			}
+            (position <= (length/2) && stack_a->data != min) ? ra(&stack_a) : rra(&stack_a);
+			break ;
 			temp = temp->next;
 		}
 	}
